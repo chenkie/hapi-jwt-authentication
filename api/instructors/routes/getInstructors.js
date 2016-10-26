@@ -1,27 +1,27 @@
 'use strict';
 
-const User = require('../model/User');
+const Instructor = require('../model/Instructor');
 const Boom = require('boom');
 
 module.exports = {
   method: 'GET',
-  path: '/api/users',
+  path: '/api/instructors',
   config: {
     auth: false,
     handler: (req, res) => {
-      User
+      Instructor
         .find()
         // Deselect the password and version fields
-        .select('-password -__v')
-        .exec((err, users) => {
+        .select('-__v')
+        .exec((err, data) => {
           if (err) {
             throw Boom.badRequest(err);
           }
-          if (!users.length) {
-            throw Boom.notFound('No users found!');
+          if (!data.length) {
+            throw Boom.notFound('No instructors found!');
           }
-          res(users);
-        })
-    }    
+          res(data);
+        });
+    }
   }
 }

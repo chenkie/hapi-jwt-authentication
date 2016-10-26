@@ -1,10 +1,10 @@
 'use strict';
 
 const Boom = require('boom');
-const User = require('../model/User');
-const authenticateUserSchema = require('../schemas/authenticateUser');
-const verifyCredentials = require('../util/userFunctions').verifyCredentials;
-const createToken = require('../util/token');
+const User = require('../../users/model/User');
+const postUserSchema = require('../schemas/postUser');
+const verifyCredentials = require('../../../util/userFunctions').verifyCredentials;
+const createToken = require('../../../util/token');
 
 module.exports = {
   method: 'POST',
@@ -18,10 +18,10 @@ module.exports = {
     handler: (req, res) => {
       // If the user's password is correct, we can issue a token.
       // If it was incorrect, the error will bubble up from the pre method
-      res({ id_token: createToken(req.pre.user) }).code(201);
+      res({ token: createToken(req.pre.user) });
     },
     validate: {
-      payload: authenticateUserSchema
+      payload: postUserSchema
     }
   }  
 }

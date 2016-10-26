@@ -3,9 +3,9 @@
 const bcrypt = require('bcrypt');
 const Boom = require('boom');
 const User = require('../model/User');
-const createUserSchema = require('../schemas/createUser');
-const verifyUniqueUser = require('../util/userFunctions').verifyUniqueUser;
-const createToken = require('../util/token');
+const postUserSchema = require('../schemas/postUser');
+const verifyUniqueUser = require('../../../util/userFunctions').verifyUniqueUser;
+const createToken = require('../../../util/token');
 
 function hashPassword(password, cb) {
   // Generate a salt at level 10 strength
@@ -41,14 +41,14 @@ module.exports = {
             throw Boom.badRequest(err);
           }
           // If the user is saved successfully, issue a JWT
-          res({ id_token: createToken(user) }).code(201);
+          res({ token: createToken(user) });
         });
       });
 
     },
     // Validate the payload against the Joi schema
     validate: {
-      payload: createUserSchema
+      payload: postUserSchema
     }
   }
 }

@@ -1,7 +1,7 @@
 'use strict';
 
 const Boom = require('boom');
-const User = require('../model/User');
+const User = require('../api/users/model/User');
 const bcrypt = require('bcrypt');
 
 function verifyUniqueUser(req, res) {

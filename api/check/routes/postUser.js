@@ -2,9 +2,9 @@
 
 const bcrypt = require('bcrypt');
 const Boom = require('boom');
-const User = require('../model/User');
-const checkUserSchema = require('../schemas/checkUser');
-const verifyUniqueUser = require('../util/userFunctions').verifyUniqueUser;
+const User = require('../../users/model/User');
+const postUserSchema = require('../schemas/postUser');
+const verifyUniqueUser = require('../../../util/userFunctions').verifyUniqueUser;
 
 module.exports = {
   method: 'POST',
@@ -19,7 +19,7 @@ module.exports = {
     },
     // Validate the payload against the Joi schema
     validate: {
-      payload: checkUserSchema
+      payload: postUserSchema
     }
   }
 }

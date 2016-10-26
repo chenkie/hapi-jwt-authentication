@@ -3,7 +3,7 @@
 const Boom = require('boom');
 const User = require('../model/User');
 const updateUserSchema = require('../schemas/updateUser');
-const verifyUniqueUser = require('../util/userFunctions').verifyUniqueUser;
+const verifyUniqueUser = require('../../../util/userFunctions').verifyUniqueUser;
 
 module.exports = {
   method: 'PATCH',
@@ -12,6 +12,10 @@ module.exports = {
     pre: [
       { method: verifyUniqueUser, assign: 'user' }
     ],
+    auth: {
+      strategy: 'jwt',
+      scope: ['admin']
+    },
     handler: (req, res) => {
       const id = req.params.id;
       User
@@ -28,10 +32,6 @@ module.exports = {
     validate: {
       payload: updateUserSchema.payloadSchema,
       params: updateUserSchema.paramsSchema
-    },
-    auth: {
-      strategy: 'jwt',
-      scope: ['admin']
     }
   }
   
