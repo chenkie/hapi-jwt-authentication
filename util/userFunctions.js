@@ -39,8 +39,8 @@ function verifyCredentials(req, res) {
   // matches either the email or username
   User.findOne({ 
     $or: [ 
-      { email: req.payload.email },
-      { username: req.payload.username }
+      { email: req.payload.user },
+      { username: req.payload.user }
     ]
   }, (err, user) => {
     if (user) {

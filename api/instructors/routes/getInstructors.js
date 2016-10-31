@@ -20,6 +20,7 @@ module.exports = {
           if (!data.length) {
             throw Boom.notFound('No instructors found!');
           }
+
           res(data);
         });
     }

@@ -2,11 +2,7 @@
 
 const secret = process.env.SECRET_KEY;
 const jwt = require('jsonwebtoken');
-const md5 = require('md5');
-
-function createGravatarUrl(email) {
-  return `https://www.gravatar.com/avatar/${md5(email).toLowerCase().trim()}`;
-}
+const createGravatarUrl = require('./createGravatar');
 
 function createToken(user) {
   let scope;
