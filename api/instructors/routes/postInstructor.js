@@ -9,7 +9,8 @@ module.exports = {
   path: '/api/instructors',
   config: {
     auth: {
-      strategy: 'jwt'
+      strategy: 'jwt',
+      scope: ['admin']
     },
     handler: (req, res) => {
 

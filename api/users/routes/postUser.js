@@ -30,7 +30,7 @@ module.exports = {
       let user = new User();
       user.email = req.payload.email;
       user.username = req.payload.username;
-      user.admin = false;
+      user.admin = req.payload.admin || false;
       hashPassword(req.payload.password, (err, hash) => {
         if (err) {
           throw Boom.badRequest(err);

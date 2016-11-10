@@ -7,7 +7,9 @@ module.exports = {
   method: 'GET',
   path: '/api/instructors',
   config: {
-    auth: false,
+    auth: {
+      strategy: 'jwt'
+    },
     handler: (req, res) => {
       Instructor
         .find()

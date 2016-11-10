@@ -7,7 +7,9 @@ module.exports = {
   method: 'GET',
   path: '/api/instructors/{id}',
   config: {
-    auth: false,
+    auth: {
+      strategy: 'jwt'
+    },
     handler: (req, res) => {
       
       const _id = req.params.id;

@@ -8,7 +8,7 @@ module.exports = {
   method: 'DELETE',
   path: '/api/instructors/{id}',
   config: {
-        auth: {
+    auth: {
       strategy: 'jwt',
       scope: ['admin']
     },
